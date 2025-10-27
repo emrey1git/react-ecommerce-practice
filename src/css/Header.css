@@ -1,0 +1,22 @@
+.logo{
+    width: 50px;
+    height: 50px;
+}
+.logoText{
+    font-size: 24px;
+    font-weight: bold;
+}
+.searchInput{
+    border: none;
+    border-bottom: 1px solid lightgray;
+    padding: 5px 10px;
+    outline: none;
+    margin-right: 10px;
+}
+.header-icons{
+    font-size: 20px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
