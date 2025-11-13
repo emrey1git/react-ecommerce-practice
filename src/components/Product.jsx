@@ -1,9 +1,10 @@
-import React from "react";
+import React, { use } from "react";
 import "../css/Product.css";
 import "../App.css";
 function Product({ product }) {
   const { id, title, image, price, description } = product;
-  console.log(product);
+  const navigate = useNavigate();
+ 
   return (
     <div>
       <div className="card">
@@ -11,7 +12,7 @@ function Product({ product }) {
         <p style={{ textAlign: "center", height: "80px" }}>{title}</p>
         <h3 style={{ textAlign: "center" }}>{price} ₺</h3>
         <div className="flex-row">
-          <button className="detail-button">Detay</button>
+          <button className="detail-button" onClick={()=>navigate("/product-details/" + id)}>Detay</button>
         </div>
       </div>
     </div>

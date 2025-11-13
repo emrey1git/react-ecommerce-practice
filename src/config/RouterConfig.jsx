@@ -6,6 +6,7 @@ function RouterConfig() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/product-details/:id" element={<ProductDetails />} />
     </Routes>
   );
 }
