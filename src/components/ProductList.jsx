@@ -7,10 +7,10 @@ function ProductList() {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
   console.log(products);
-  // useEffect içinde sadece dispatch işlemini yapıyoruz
+ 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, [dispatch]); // Bağımlılık dizisine 'dispatch' eklenmesi iyi bir pratik
+  }, [dispatch]); 
 
   return (
     <div className="flex-row" style={{flexWrap:'wrap', marginTop: '25px'}}>

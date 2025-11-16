@@ -16,7 +16,9 @@ export const productSlice = createSlice({
 name: 'products',
 initialState,
 reducers: {
-    // Senkron action'lar (actions) buraya eklenecek
+    setSelectedProduct: (state, action) => {
+            state.selectedProduct = action.payload; 
+        },
   },
 extraReducers: (builder) => {
     builder.addCase(getAllProducts.pending, (state,action) => {
@@ -30,6 +32,6 @@ builder
 }
 })
 
-export const { } = productSlice.actions
+export const {setSelectedProduct } = productSlice.actions
 
 export default productSlice.reducer

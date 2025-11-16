@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home.jsx";
+import ProductDetails from "../components/ProductDetails.jsx";
 
 function RouterConfig() {
   return (
