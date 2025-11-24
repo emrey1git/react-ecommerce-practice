@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import "../css/Header.css";
 import { LuShoppingBasket } from "react-icons/lu";
 import { FaMoon } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [theme, setTheme] = useState(false);
+  const navvigate = useNavigate();
   const changeTheme = () => {
     const root = document.getElementById("root");
     if (!theme) {
@@ -27,7 +29,11 @@ const Header = () => {
         padding: "10px 0",
       }}
     >
-      <div className="flex-row">
+      <div
+        className="flex-row"
+        onClick={() => navvigate("/")}
+        style={{ cursor: "pointer" }}
+      >
         <img className="logo" src="./src/images/logo.png" />
         <p className="logoText">Elenzo</p>
       </div>
