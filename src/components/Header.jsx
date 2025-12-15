@@ -1,13 +1,26 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import "../css/Header.css";
 import { LuShoppingBasket } from "react-icons/lu";
 import { FaMoon } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import Badge from '@mui/material/Badge';
+import { useSelector } from "react-redux";
 
-const Header = () => {
+
+// 1. Prop olarak onBasketClick'i (veya App.jsx'te kullandığınız ismi) alın.
+const Header = ({ onBasketClick }) => { 
   const [theme, setTheme] = useState(false);
-  const navvigate = useNavigate();
+
+  const { products } = useSelector((state) => state.basket);
+  const basketCount = products ? products.length : 0;
+
+  // 2. navigate yazım hatasını düzeltin.
+  const navigate = useNavigate(); 
+  
+  // Eski hali: const navvigate = useNavigate(); 
+  // Eski hali: onClick={() => navvigate("/")}
+
   const changeTheme = () => {
     const root = document.getElementById("root");
     if (!theme) {
@@ -31,10 +44,11 @@ const Header = () => {
     >
       <div
         className="flex-row"
-        onClick={() => navvigate("/")}
+        // Düzeltilmiş navigate kullanıldı
+        onClick={() => navigate("/")} 
         style={{ cursor: "pointer" }}
       >
-        <img className="logo" src="./src/images/logo.png" />
+        <img className="logo" src="./src/images/logo.png" alt="Elenzo Logo"/>
         <p className="logoText">Elenzo</p>
       </div>
 
@@ -46,18 +60,27 @@ const Header = () => {
         />
 
         <div className="header-icons">
-          {theme ? (
+          {theme ? 
             <FaMoon className="header-icons" onClick={changeTheme} />
-          ) : (
+            
+            : 
             <MdOutlineLightMode
               className="header-icons"
               onClick={changeTheme}
             />
-          )}
-
-          <LuShoppingBasket />
+          } 
+          
+          {/* 3. Badge'e onClick event'i eklenip prop olarak gelen fonksiyon bağlandı. */}
+          <Badge 
+            badgeContent={basketCount} 
+            color="primary"
+            onClick={onBasketClick} // <<< KRİTİK DÜZELTME BURADA
+            style={{ cursor: 'pointer' }} // Tıklanabilir olduğunu belli etmek için
+          >
+            <LuShoppingBasket />
+          </Badge>  
         </div>
-      </div>
+      </div>  
     </div>
   );
 };
