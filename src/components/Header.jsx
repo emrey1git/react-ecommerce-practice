@@ -5,22 +5,27 @@ import { FaMoon } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Badge from '@mui/material/Badge';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux"; // useDispatch'i yukarı taşıdım
+import { setSearchTerm } from "../redux/slices/productSlice.jsx";
 
-
-// 1. Prop olarak onBasketClick'i (veya App.jsx'te kullandığınız ismi) alın.
 const Header = ({ onBasketClick }) => { 
   const [theme, setTheme] = useState(false);
 
+  // Sepet ve ürün state'lerini çekme
   const { products } = useSelector((state) => state.basket);
+  const productState = useSelector((state) => state.products) || {};
+  const searchTerm = productState.searchTerm || ""; // Null/Undefined koruması
+  
   const basketCount = products ? products.length : 0;
-
-  // 2. navigate yazım hatasını düzeltin.
+  const dispatch = useDispatch();
   const navigate = useNavigate(); 
   
-  // Eski hali: const navvigate = useNavigate(); 
-  // Eski hali: onClick={() => navvigate("/")}
-
+  const handleSearch = (e) => {
+      // Input değerini Redux'a gönder
+      const value = e.target.value || "";
+      dispatch(setSearchTerm(value)); 
+  };
+  
   const changeTheme = () => {
     const root = document.getElementById("root");
     if (!theme) {
@@ -44,7 +49,6 @@ const Header = ({ onBasketClick }) => {
     >
       <div
         className="flex-row"
-        // Düzeltilmiş navigate kullanıldı
         onClick={() => navigate("/")} 
         style={{ cursor: "pointer" }}
       >
@@ -57,12 +61,13 @@ const Header = ({ onBasketClick }) => {
           className="searchInput"
           type="text"
           placeholder="Bir şeyler arayın..."
+          value={searchTerm}
+          onChange={handleSearch}
         />
 
         <div className="header-icons">
           {theme ? 
             <FaMoon className="header-icons" onClick={changeTheme} />
-            
             : 
             <MdOutlineLightMode
               className="header-icons"
@@ -70,12 +75,11 @@ const Header = ({ onBasketClick }) => {
             />
           } 
           
-          {/* 3. Badge'e onClick event'i eklenip prop olarak gelen fonksiyon bağlandı. */}
           <Badge 
             badgeContent={basketCount} 
             color="primary"
-            onClick={onBasketClick} // <<< KRİTİK DÜZELTME BURADA
-            style={{ cursor: 'pointer' }} // Tıklanabilir olduğunu belli etmek için
+            onClick={onBasketClick} 
+            style={{ cursor: 'pointer' }}
           >
             <LuShoppingBasket />
           </Badge>  

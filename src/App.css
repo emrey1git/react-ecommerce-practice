@@ -64,3 +64,40 @@ justify-content: center;
     padding: 10px;
     border-bottom: 1px dotted #eee;
 }
+
+.item-title {
+    flex-grow: 1;
+    margin: 0;
+    width: 120px; /* Sabit genişlik ihtiyacı varsa */
+}
+
+.item-price {
+    margin: 0;
+    font-weight: bold;
+    width: 80px; /* Sabit genişlik ihtiyacı varsa */
+}
+
+.delete-btn {
+    margin-right: 5px;
+    border-radius: 5px;
+    background-color: rgba(185, 76, 76);
+    border: none;
+    color: #fff;
+    width: 50px;
+    padding: 5px;
+    cursor: pointer;
+    /* HOVER EFEKTİ EKLEME */
+    transition: background-color 0.2s; /* Geçiş efekti ekle */
+}
+.delete-btn:hover {
+    background-color: rgba(185, 76, 76, 0.8); /* %80 opaklıkta hover rengi */
+}
+
+.basket-total {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #333;
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2em;
+}

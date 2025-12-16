@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 const initialState = {
 products:[],
 selectedProduct:{},
+searchTerm: "",
 loading: false  
 }
 const BASE_URL = "https://fakestoreapi.com";
@@ -19,6 +20,9 @@ reducers: {
     setSelectedProduct: (state, action) => {
             state.selectedProduct = action.payload; 
         },
+        setSearchTerm: (state, action) => {
+            state.searchTerm = action.payload; 
+        },
   },
 extraReducers: (builder) => {
     builder.addCase(getAllProducts.pending, (state,action) => {
@@ -32,6 +36,6 @@ builder
 }
 })
 
-export const {setSelectedProduct } = productSlice.actions
+export const {setSelectedProduct, setSearchTerm } = productSlice.actions
 
 export default productSlice.reducer
