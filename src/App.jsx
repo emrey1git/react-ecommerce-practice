@@ -40,29 +40,17 @@
           
           <Drawer anchor="right" open={isBasketOpen} onClose={basketClose}>
             {/* Genişlik ve Padding */}
-            <div style={{ width: "350px", padding: "15px" }}>
+            <div 
+             className="basket-drawer-container">
               
               {/* Başlık ve Kapatma Butonu */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  borderBottom: "1px solid #ccc",
-                  paddingBottom: "10px",
-                  marginBottom: "10px",
-                }}
+              <div className="basket-header"
+              
               >
                 <h3>Sepetim ({products.length})</h3>
-                <button
+                <button className="basket-close-btn"
                   onClick={basketClose}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    fontSize: "1.2em",
-                    cursor: "pointer",
-                    fontWeight: "bold",
-                  }}
+                  
                 >
                   X
                 </button>
@@ -74,15 +62,9 @@
               ) : (
                 products.filter(product => product && product.title && product.price > 0).map((product, index) => {
                   return (
-                    <div
+                    <div className="basket-item"
                       key={product.id || index}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px",
-                        padding: "10px",
-                        borderBottom: "1px dotted #eee",
-                      }}
+                      
                     >
                       <img
                         src={product.image}
@@ -92,28 +74,18 @@
                         style={{ flexShrink: 0 }}
                       />
                       {/* Ürün Adı ve Miktar */}
-                      <p style={{ flexGrow: 1, margin: 0, width: "120px" }}>
+                      <p className="item-title">
                         {product.title} (x{product.quantity || product.count || 1})
                       </p>
                       {/* Ürünün Toplam Fiyatı */}
-                      <p style={{ margin: 0, fontWeight: "bold", width: "80px" }}>
+                      <p className="item-price" >
                         {(product.price * (product.quantity || product.count || 1)).toFixed(2)}₺
                       </p>
                       
                       {/* Sil Butonu */}
-                      <button
+                      <button className="delete-btn"
                         onClick={()=> deleteItemFromBasket(product.id)}
-                        style={{
-                          marginRight: "5px",
-                          borderRadius: "5px",
-                          backgroundColor: "rgba(185, 76, 76)",
-                          border: "none",
-                          color: "#fff",
-                          width: "50px",
-                          padding: '5px',
-                          cursor: 'pointer',
-                          
-                        }}
+                     
                       >
                         Sil
                       </button>
@@ -124,7 +96,7 @@
               
               {/* Genel Toplam Satırı */}
               {products.length > 0 && (
-                  <div style={{ marginTop: '20px', paddingTop: '10px', borderTop: '2px solid #333', textAlign: 'right', fontWeight: 'bold', fontSize: '1.2em' }}>
+                  <div className="basket-total" >
                       Genel Toplam: {totalPrice.toFixed(2)}₺
                   </div>
               )}

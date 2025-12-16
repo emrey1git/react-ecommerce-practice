@@ -36,3 +36,31 @@ justify-content: center;
 #root{
   min-height: 100vh;
 }
+
+.basket-drawer-container {
+    width: 350px;
+    padding: 15px;
+}
+.basket-header{
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.basket-close-btn{
+  background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.basket-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px dotted #eee;
+}
